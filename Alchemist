@@ -1,0 +1,41 @@
+"""
+You have a pot and N ingredients. Each ingredient has a real number parameter called value, and the value of the i-th ingredient (1 <= i <= N) is v(i).
+
+When you put two ingredients in the pot, they will vanish and result in the formation of a new ingredient.
+The value of the new ingredient will be (x+y)/2 where x and y are the values of the ingredients consumed, and you can put this ingredient again in the pot.
+
+After you compose ingredients in this way N-1 times, you will end up with one ingredient. Find the maximum possible value of this ingredient.
+
+
+
+Input Format
+
+All values in input are integers.
+
+Input is given from Standard Input in the following format:
+N
+v(1) v(2) ... v(N)
+
+
+Output Format
+
+Print a decimal number (or an integer) representing the maximum possible value of the last ingredient remaining.
+"""
+
+
+
+n = int(input())
+
+tab = list(map(int,input().split()))
+
+tab.sort()
+
+i = tab[0]
+
+for x in range(1,n):
+    
+    j = tab[x]
+    
+    i = (i+j)/2
+    
+print(i)
