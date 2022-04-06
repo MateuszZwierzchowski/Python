@@ -1,0 +1,125 @@
+"""
+You have to organize results of a professional spillikins league. A spillikins match consists of two players collecting points. 
+The player with the greater amount of points wins the match. 
+
+You are given the results of  matches in form of:   player_id:points player_id:points
+
+You have to sort the players in descending order according to the number of matches they won. 
+In case of a draw - in descending order according to the number of points they got in all matches. In case of yet another draw,
+in ascending order according to their identifier (as in ASCII, i.e. 'Z' is before 'a'). (If a match ended in a draw it counts as no one winning.)
+
+
+
+Input Format
+
+The first line of input contains an integer N - the number of matches in the league.
+
+Each of the following N lines contains the results of the match in the form of:
+
+player_id:points player_id:points
+
+
+Constraints
+
+1 <= N <= 100
+
+Each player_id is unique. player_id is a string composed of english letters.
+
+
+
+Output Format
+
+Some number of lines, each containing one player_id. They have to be sorted according to description above.
+
+"""
+
+
+
+
+
+n = int(input())
+
+tab = []
+
+for x in range(n):
+    
+    a = input().split()
+    
+    b = a[0].split(":")
+    c = a[1].split(":")
+    
+    if len(tab)==0:
+        
+        if int(b[1])>int(c[1]):
+            
+            tab.append([1,int(b[1]),b[0]])
+            tab.append([0,int(c[1]),c[0]])
+            
+        elif int(b[1])<int(c[1]):
+            
+            tab.append([0,int(b[1]),b[0]])
+            tab.append([1,int(c[1]),c[0]])
+            
+        else:
+            
+            tab.append([0,int(b[1]),b[0]])
+            tab.append([0,int(c[1]),c[0]])
+            
+    else:
+        
+        czyb = False
+        czyc = False
+        
+        for i in range(len(tab)):
+            
+            if tab[i][2] == b[0]:
+                
+                czyb = True
+                
+                tab[i][1] += int(b[1])
+                
+                if int(b[1])>int(c[1]):
+                    
+                    tab[i][0] += 1
+                    
+            if tab[i][2] == c[0]:
+                
+                czyc = True
+                
+                tab[i][1] += int(c[1])
+                
+                if int(c[1])>int(b[1]):
+                    
+                    tab[i][0] += 1
+                    
+                    
+        if czyb == False:
+            
+            if int(b[1])>int(c[1]):
+                
+                tab.append([1,int(b[1]),b[0]])
+                
+            else:
+                
+                tab.append([0,int(b[1]),b[0]])
+                
+        if czyc == False:
+            
+            if int(c[1])>int(b[1]):
+                
+                tab.append([1,int(c[1]),c[0]])
+                
+            else:
+                
+                tab.append([0,int(c[1]),c[0]])
+                
+                
+tab.sort(key=lambda x: x[2])               
+tab.sort(key=lambda x: x[1],reverse=True)
+tab.sort(key=lambda x: x[0],reverse=True)       
+
+for i in range(len(tab)):
+    
+    print(tab[i][2])
+            
+    
