@@ -1,0 +1,98 @@
+"""
+Kevin drew several intervals [A;B] , where  and  are integers (all intervals are closed, thus containing all numbers from A to B inclusive). 
+Now he wonders how many integers belong to at least one of those intervals.
+
+
+
+Input Format
+
+In the first line there is one integer Z denoting the number of test sets. Next, each set is described.
+
+The first line of the set description contains an integer N, denoting the number of intervals recorded by Kevin.
+
+In the following N lines, intervals are given in the form of two integers A and B, separated by a space.
+
+
+
+Output Format
+
+For each test set should be written on a separate line, how many integers belong to at least one of the given intervals.
+
+"""
+
+
+n = int(input())
+
+tab = []
+
+for g in range(n):
+    
+    tab.clear()
+    
+    suma = 0
+    
+    m = int(input())
+        
+    for h in range(m):
+            
+        a = input().split()
+        
+        tab.append([int(a[0]),int(a[1])])
+        
+    tab.sort()
+    
+    mini = tab[0][0]
+    
+    maxi = tab[0][1]
+    
+    k = 0
+    
+    while k < len(tab):
+        
+        czy = False
+        
+        while k < len(tab) and tab[k][0]<=maxi:
+            
+            if tab[k][1]>maxi:
+                maxi = tab[k][1]    
+            k += 1
+            
+        if maxi>0 and mini>0:
+            
+            suma += maxi-mini+1
+            
+        elif maxi<0 and mini<0:
+            
+            suma += abs(mini)-abs(maxi)+1
+            
+        else:
+            
+            suma += maxi-mini+1
+            
+        if k < len(tab) and maxi != tab[k][1]:
+            
+            czy = True
+       
+        if k < len(tab):
+            
+            mini = tab[k][0]
+            maxi = tab[k][1]
+        
+        k += 1
+        
+    if czy:
+        
+        if maxi>0 and mini>0:
+            
+            suma += maxi-mini+1
+            
+        elif maxi<0 and mini<0:
+            
+            suma += abs(mini)-abs(maxi)+1
+            
+        else:
+            
+            suma += maxi-mini+1
+
+            
+    print(suma)
