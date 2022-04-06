@@ -1,0 +1,60 @@
+"""
+Bitty is standing at the beginning of an avenue with trees alogside it.  Bitty stands in the line in which trees grow, so there may be trees that she can't see.
+Count the number of trees that Bitty can see (we assume that if Bitty can see any part of the tree, then she sees that tree. She does not need to see the whole tree).
+
+E.g if the first tree is higher than Bitty and is the highest of all trees, then Bitty will see only that tree - she will not see any other.
+
+
+
+Input Format
+
+The first line contains two positive integers. The first one is N - the number of trees. The second one is H - height at which Bitty has her eyes :)
+
+Each of the next N lines contains two positive integers d,h describing a tree. The first one is the distance of the tree from Bitty, 
+the second one is the height of that tree. You can assume, that there will not be two trees with the same value of distance and that each tree has height at least H.
+
+
+
+Output Format
+
+Single integer - number of trees that Bitty can see.
+"""
+
+
+
+
+
+a = input().split()
+
+n = int(a[0])
+
+h = int(a[1])
+
+tab = [[0 for i in range(2)]for j in range(n)]
+
+
+for i in range(n):
+    
+    a = input().split()
+    
+    tab[i][0]=int(a[0])
+    tab[i][1]=int(a[1])-h
+    
+tab = sorted(tab,key=lambda x:x[0])
+
+licznik = 1
+
+maxi = tab[0][1]/tab[0][0]
+
+for x in range(1,n):
+    
+    f = tab[x][1]/tab[x][0]
+    
+    if f > maxi:
+        
+        maxi = f
+        licznik += 1
+        
+
+print(licznik)
+    
