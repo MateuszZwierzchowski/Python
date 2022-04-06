@@ -1,0 +1,88 @@
+"""
+In this task you have to find the maximum sum of continuous elements in a list. If the sum is negative return 0. If the sum is negative return 0.
+
+
+
+Input Format
+
+One line with some number of space-separated integers a(0), a(1), a(2), ... , a(n).
+
+
+
+Constraints
+
+1 < n <= 10^6
+-1000 < a(i) < 1000
+
+
+
+Output Format
+
+One integer, that is the maximum possible sum.
+"""
+
+
+
+
+a = input().split()
+
+tab= []
+
+n = len(a)
+
+i = 0
+
+while i < n:
+    
+    pom = 0
+    
+    if int(a[i])>0:
+        
+        while i < n and int(a[i]) >= 0:
+            
+            pom += int(a[i])
+            
+            i += 1
+            
+    else:
+        
+        while i < n and int(a[i]) <= 0:
+            
+            pom += int(a[i])
+            
+            i += 1
+    
+    if pom != 0:
+        
+        tab.append(pom)
+    
+suma = 0
+
+sumax = 0
+
+n = len(tab)
+
+x = 0
+
+while x < n:
+        
+    if suma >= 0:
+    
+        suma += tab[x]
+        
+        if suma > sumax :
+            
+            sumax = suma
+            
+        x += 1
+            
+    else:
+        
+        suma = 0
+        
+        while (x < n and tab[x] < 0):
+            
+            x += 1
+        
+        
+print(sumax)
